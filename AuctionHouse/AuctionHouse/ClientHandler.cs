@@ -26,7 +26,9 @@ namespace AuctionHouse
             Writer = new StreamWriter(NetStream);
             Reader = new StreamReader(NetStream);
 
+            Communicate();
 
+            Close();
 
         }
 
@@ -56,6 +58,13 @@ namespace AuctionHouse
             Writer.WriteLine(text);
             Writer.Flush();
         }
+
+        private void Communicate()
+        {
+            
+        }
+
+
 
     }
 
