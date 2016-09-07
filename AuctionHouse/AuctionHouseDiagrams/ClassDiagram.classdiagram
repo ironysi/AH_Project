@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="b6970214-37d2-4ecf-89f5-6b3f4abaf68f" name="ClassDiagram" linkedPackageId="a6acfdc2-5b52-4acc-a7cf-b5f334a1bd38" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="922bbe06-2752-4f5d-ac8e-c730bacba49f">
+      <profileInstance Id="6204971a-26de-476c-8cf7-151cbd240bd0" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="113c7b10-fcd6-4e3d-bab5-5184930c7569">
+      <profileInstance Id="d421db4d-695d-4530-a920-1a273076c4d5" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="027ef554-1341-4aec-b2a9-d67e6a06d6d3" name="Client" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c9b765f1-92a4-4143-b932-3d9271aa436f" />
+        <targetEnds>
+          <association Id="89367b40-e919-4dcc-8a23-d500c6b9cb03" isDerived="false" sourceEndRoleName="Client" targetEndRoleName="Server" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9498fc5b-e228-4b19-a636-d6de628adce6" LastKnownName="Server" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c6dc1153-7565-4dd6-93e2-153265e55931" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="f8e611b6-991c-4992-bcdb-19dad110d9a6" name="Lower" value="0">
+                      <elementDefinition Id="0cbd5bd4-86c4-441b-986c-51f5fdf120c4" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="e365b0f1-04b6-4475-bdcd-01490a34dbeb" name="Upper" value=".*">
+                      <elementDefinition Id="b08ed185-9a71-45bb-ae43-8264bc6f686a" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="50ab4fd9-2ca9-4b34-8066-385f2c5405e1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8434cbb7-41c3-46b2-bb5f-b87365b1a269" name="Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8dcae1cb-492b-4fd8-b96f-bfd4833467a9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d73fc307-46e3-410b-9323-7866b6678d22" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="231969d0-6bd5-4e69-bd80-0f100f97e13a" name="socket" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ad2c19b6-6f5b-41c2-9510-0e0496c786fe" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="add168dc-2288-441b-a64a-ac4d1d214ba1" LastKnownName="Socket" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="be094728-f690-4372-b620-8ba010efd331" name="request" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8329bd4a-6a18-4d3f-885f-1ab73643d18a" />
+          </operation>
+          <operation Id="5d4dead4-571b-4960-b110-4d2746729867" name="response" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f7225cce-b3b7-4c21-8476-dfc8a0f57646" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="add168dc-2288-441b-a64a-ac4d1d214ba1" name="Socket" isAbstract="false" isLeaf="false" cachedFullName="Socket">
+        <elementDefinition Id="182f470e-3adc-418b-848e-edcf5df7b5ea" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9498fc5b-e228-4b19-a636-d6de628adce6" name="Server" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9a39b2ea-1544-43f0-8014-44ecce4a10d7" />
+        <targetEnds>
+          <association Id="815adca4-6011-4897-b7f1-b40f36f00bc3" isDerived="false" sourceEndRoleName="Server" targetEndRoleName="User" isLeaf="false" isAbstract="false">
+            <classMoniker Id="e965ed7c-f4dc-4b9e-8683-45ca854c0c0f" LastKnownName="User" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d2a50e40-7391-4ec7-80a0-0a1382848a72" name="Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="a8b4ba30-aa5f-43bc-b07e-2de3a66166f1" name="Lower" value="0">
+                      <elementDefinition Id="395fe9c4-f96b-4f79-b6a0-f656f15481ff" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="3c2c1a6d-c95d-4cfa-b20c-69e4daa2e799" name="Upper" value=".*">
+                      <elementDefinition Id="c24673ea-26b0-4d71-ae24-854c4fa76488" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="79a835ef-113b-4549-9bb1-088fd8ad1a94" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="df9e3440-80a3-49c6-a2bd-8fceecca53db" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="726a6b10-39b3-45c5-b658-4123269e5d79" name="Lower" value="0">
+                      <elementDefinition Id="4db9da24-a306-4704-be6e-f9264fb3a60b" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="4e7624b2-3e21-475d-913d-e4243c9ed422" name="Upper" value=".*">
+                      <elementDefinition Id="b301d302-4687-4fb8-872f-bb4d2c51e78e" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="151dc215-1d64-4711-bbc4-3d0930ab0589" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6e0b31ff-41ec-4635-b6fd-82f70f526584" />
+          </association>
+          <association Id="ecab67ee-a680-454b-9ff6-961439713b97" isDerived="false" sourceEndRoleName="Server" targetEndRoleName="Database" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f2f6a3f2-a2f3-4b02-a403-a66c24001353" LastKnownName="Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="73d14283-d6be-44d1-86ae-e28eba2751bf" name="Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a4323079-69ab-4f12-990b-9b7b34943f94" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3e00a45f-27b6-42bd-992a-d1478a37c9e1" name="Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1d39db57-d28c-4ee5-b072-cda742a8a4bc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d2592857-d018-4e2d-b519-8d26daff7ff6" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="fb5ed474-32a0-403f-b5b3-32fc439f39ec" name="ssocket" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="935a8fcb-430a-4eb5-8e67-6369b461c710" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="562f30c0-6a35-4a93-91e5-a736c9ef1490" LastKnownName="ServerSocket" />
+            </type_NamedElement>
+          </property>
+          <property Id="ebdef4d3-28d8-4f1a-b035-7434da22f99d" name="socket" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ed324ee3-5bb2-4d28-8577-eca6303cd9b6" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="add168dc-2288-441b-a64a-ac4d1d214ba1" LastKnownName="Socket" />
+            </type_NamedElement>
+          </property>
+          <property Id="cc16a649-4021-47c1-a3f0-37cfc5ad2f11" name="running" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dfbb8a14-92b8-4e6e-8e9e-15d1e5aeeffc" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="c56b3b1f-b866-44a8-b628-c5749ec48782" LastKnownName="Boolean" />
+            </type_NamedElement>
+          </property>
+          <property Id="cd344eb5-65cd-4ace-92f0-0c985ea40964" name="request" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6e7fd8ed-e856-4dea-bc3f-84aab137da65" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="74264499-6cc4-4112-ac60-872fe854c751" name="createUser" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="84b51ccb-0f9f-4a0a-b0e9-3c7547befb07" />
+          </operation>
+          <operation Id="a1ba4d22-92f9-4f8d-acbd-77627bda8644" name="Login" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1e4f150a-c88a-40e5-b047-94c382bb40d9" />
+          </operation>
+          <operation Id="0d846719-46ec-4dbc-98de-67f3ecd9fdef" name="getUser" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d4e684e7-f8ec-4c9e-ab0d-fb33276e9eaa" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="562f30c0-6a35-4a93-91e5-a736c9ef1490" name="ServerSocket" isAbstract="false" isLeaf="false" cachedFullName="ServerSocket">
+        <elementDefinition Id="75e5d05e-d3d3-4acd-8670-fbe47258cef0" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="c56b3b1f-b866-44a8-b628-c5749ec48782" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e965ed7c-f4dc-4b9e-8683-45ca854c0c0f" name="User" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b7e3349c-2a40-497a-b156-78add19a3650" />
+        <targetEnds>
+          <association Id="cb6a8171-5149-479f-b862-48d1010edc1e" isDerived="false" sourceEndRoleName="User" targetEndRoleName="ChatRoom" isLeaf="false" isAbstract="false">
+            <classMoniker Id="304c4c20-32a9-42c7-94fb-702701f0b1d1" LastKnownName="ChatRoom" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1bacd17a-778d-4ee6-866c-b7d80a4925a1" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="a127367a-f16c-49da-b5fd-b5914ca3ecd5" name="Lower" value="1">
+                      <elementDefinition Id="a56f9539-3a1e-4b58-8665-16c7df9bde06" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="6ae06569-defb-4302-a861-ad5b19e4897b" name="Upper" value=".*">
+                      <elementDefinition Id="63f8ac3e-fb22-42f8-8e8d-db4d83a94ccb" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9c951f8f-d5f0-4f4d-b9df-8b60c7cef7ab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7139e0b4-d080-4e5a-b3e3-338d89375183" name="ChatRoom" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="f51052be-90ff-49af-84c9-698119447cab" name="Lower" value="1">
+                      <elementDefinition Id="318a0c51-1f8e-49a4-9b61-c98627a7bbe8" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="c80ef0b5-cbe9-44bf-81ad-1c42448882ff" name="Upper" value=".*">
+                      <elementDefinition Id="77eaddee-ac77-4fd5-9f8d-ee911c977b39" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="c48d5f4f-629b-4686-bdd1-65531c86f8d9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4abfb6c8-1def-43d4-af09-219d5ecef1ed" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="8830f8ef-33cb-4bbb-891b-1d18a081c641" name="name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1680640f-75e9-4652-a9da-b88c488a8a8c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="705ac73a-a562-4eef-abf7-550d42d1cbd6" LastKnownName="string" />
+            </type_NamedElement>
+          </property>
+          <property Id="782441df-43d4-41ed-a0cd-44d51e985319" name="password" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2c42b3e1-64dc-4917-be72-dcf13d95ed22" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="705ac73a-a562-4eef-abf7-550d42d1cbd6" LastKnownName="string" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="705ac73a-a562-4eef-abf7-550d42d1cbd6" name="string" isAbstract="false" isLeaf="false" cachedFullName="string">
+        <elementDefinition Id="78230ab0-223f-44f2-b5ce-1c37033aedbe" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f2f6a3f2-a2f3-4b02-a403-a66c24001353" name="Database" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="05a7fa05-8416-4f88-b374-be848129cd04" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="304c4c20-32a9-42c7-94fb-702701f0b1d1" name="ChatRoom" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="13aa5b76-f1c3-43a0-9d8c-0a132856d3cd" />
+        <ownedOperationsInternal>
+          <operation Id="1a2f3b87-db4b-48e8-9701-1c9ddf7562ed" name="request" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4ae1aed4-1c74-46b3-a8f5-75d17701109e" />
+          </operation>
+          <operation Id="397f2222-9a9e-4744-9c28-9c5c858b6937" name="response" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="33eaedc0-e53f-43e0-99cb-3e1b6df80ec0" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="a6acfdc2-5b52-4acc-a7cf-b5f334a1bd38" name="AuctionHouseDiagrams">
+    <elementDefinition Id="fa10be04-c04d-4db9-adb9-e924aebadf38" />
+  </package>
+</logicalClassDesignerModel>
