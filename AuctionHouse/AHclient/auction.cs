@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AHclient
 {
-    class auction
+    class Auction
     {
         public string Name { get; set; }
         public double CurrentPrice { get; set; }
@@ -14,14 +14,14 @@ namespace AHclient
         public string Description { get; set; }
         public int AuctionState { get; set; }
 
-        public auction(string name, double currentPrice, int timeleftInSeconds)
+        public Auction(string name, double currentPrice, int timeleftInSeconds)
         {
             this.Name = name;
             this.CurrentPrice = currentPrice;
             this.TimeLeftInSeconds = timeleftInSeconds;
         }
 
-        public auction(string name, double currentPrice, int timeleftInSeconds, string description, int auctionstate)
+        public Auction(string name, double currentPrice, int timeleftInSeconds, string description, int auctionstate)
         {
             this.Name = name;
             this.CurrentPrice = currentPrice;
