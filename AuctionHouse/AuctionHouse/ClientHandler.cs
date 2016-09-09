@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AuctionHouse
@@ -26,10 +27,26 @@ namespace AuctionHouse
             Writer = new StreamWriter(NetStream);
             Reader = new StreamReader(NetStream);
 
-            Communicate();
+            SendToClient("sup my friend");
 
-            Close();
-
+            if (Server.CurrentClients < Server.MaxClients)
+            {
+                Monitor.Enter(Server._object);
+                try
+                {
+                    Server.CurrentClients++;
+                }
+                finally
+                {
+                    Monitor.Exit(Server._object);
+                }
+                Communicate();
+            }
+            else
+            {
+                SendToClient("Server is full. Disconnecting...");
+                Close();
+            }           
         }
 
         public void Close()
@@ -39,6 +56,16 @@ namespace AuctionHouse
             NetStream.Close();
             ClientSocket.Shutdown(SocketShutdown.Both);
             ClientSocket.Close();
+
+            Monitor.Enter(Server._object);
+            try
+            {
+                Server.CurrentClients--;
+            }
+            finally
+            {
+                Monitor.Exit(Server._object);
+            }
         }
 
         private string ReciveFromClient()
