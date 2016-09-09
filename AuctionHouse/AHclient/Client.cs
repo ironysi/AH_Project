@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace AHclient
 
             Thread listenerThread = new Thread(Listener);
             listenerThread.Start();
+
+            Communicate();
 
             server.CloseConnection();
         }
@@ -43,7 +46,7 @@ namespace AHclient
         {
             bool keepGoing = true;
 
-            while (keepGoing == true)
+            while (keepGoing)
             {
                 string text;
                 text = RecieveFromServer();
@@ -56,6 +59,25 @@ namespace AHclient
                     Console.WriteLine(text);
                 }
             }
+        }
+
+        private void Communicate()
+        {
+            while (ExecuteCommand()) ;
+        }
+
+        private bool ExecuteCommand()
+        {
+
+            string command;
+            command = Console.ReadLine();
+            SendToServer(command);
+            switch (command.Trim().ToLower())
+            {
+                case "exit":
+                    return false;
+            }
+            return true;
         }
 
     }

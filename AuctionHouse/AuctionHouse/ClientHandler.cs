@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -88,12 +91,29 @@ namespace AuctionHouse
 
         private void Communicate()
         {
-            
+            while (ExecuteCommand()) ;
         }
 
+        private bool ExecuteCommand()
+        {
 
-
+            string command;
+            command = ReciveFromClient();
+            Debug.WriteLine(command);
+            if (command == null)
+                return false;       // ikke mere input
+            switch (command.Trim().ToLower())
+            {
+                case "exit":
+                    Close();
+                    return false;
+                default:
+                    SendToClient("Invalid command");
+                    break;
+            }
+            return true;
+        }
     }
 
-    
+
 }

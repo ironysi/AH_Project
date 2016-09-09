@@ -13,10 +13,10 @@ namespace AHclient
     {
         public string ServerName { get; set; }
         public int Port { get; set; }
-        public TcpClient Server { get; set; }
-        public NetworkStream Stream { get; set; }
-        public StreamReader Reader { get; set; }
-        public StreamWriter Writer { get; set; }
+        public TcpClient Server;
+        public NetworkStream Stream;
+        public StreamReader Reader;
+        public StreamWriter Writer;
 
         public ServerConnection(string servername, int port)
         {

@@ -16,8 +16,6 @@ namespace AHclient
 
             Client testClient = new Client();
             testClient.Run();
-
-            Console.ReadLine();
         }
     }
 }
