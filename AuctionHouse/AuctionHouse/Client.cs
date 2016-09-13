@@ -6,22 +6,25 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse
 {
-    class Client
+    public class Client
     {
         private int Id;
         private string Name;
-        private string PasswordHash;
 
-        public Client(string name, string passwordHash) : this (0, name, passwordHash)
+        public Client(string name) : this (0, name)
         {
             
         }
 
-        public Client(int id, string name, string passwordHash)
+        public Client(int id, string name)
         {
             Id = id;
             Name = name;
-            PasswordHash = passwordHash;
+        }
+
+        public void ChangeInformation(string name)
+        {
+            this.Name = name;
         }
 
 
