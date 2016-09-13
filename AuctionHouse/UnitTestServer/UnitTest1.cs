@@ -14,7 +14,6 @@ namespace UnitTestServer
             Client testClient = new Client("name");
 
             testClient.ChangeInformation("newName");
-
         }
     }
 }
