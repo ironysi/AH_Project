@@ -32,6 +32,8 @@ namespace AuctionHouse
             TcpListener listener = new TcpListener(Ip, Port);
             listener.Start();
 
+            
+
             while (!Stop)
             {
                 Socket clientSocket = listener.AcceptSocket();
