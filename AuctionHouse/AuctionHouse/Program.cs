@@ -25,9 +25,14 @@ namespace AuctionHouse
             Thread listeningForConnections = new Thread(server.Run);
             listeningForConnections.Start();
 
+
             ServerAuction bid = new ServerAuction("Teddy", 10.0, 18, "Fluffy");
 
-        //    Thread auctionThread = new Thread();
+            Thread auctionThread = new Thread(bid.RunActiveAuction);
+            auctionThread.Start();
+
+            // someone wants to bid on teddy
+        //    Thread auctioThread = new Thread(bid.CheckNewBid());
 
 
             Console.ReadLine();
