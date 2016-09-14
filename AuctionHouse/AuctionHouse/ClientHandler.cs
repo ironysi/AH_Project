@@ -30,7 +30,7 @@ namespace AuctionHouse
             Writer = new StreamWriter(NetStream);
             Reader = new StreamReader(NetStream);
 
-            SendToClient("sup my friend");
+            SendToClient(new CommunicationData("OutPutMessage", "Sup dude, welkomen!").Encode());
 
             if (Server.CurrentClients < Server.MaxClients)
             {
@@ -47,7 +47,7 @@ namespace AuctionHouse
             }
             else
             {
-                SendToClient("Server is full. Disconnecting...");
+                SendToClient(new CommunicationData("OutPutMessage", "Server is full. Disconnecting...").Encode());
                 Close();
             }           
         }
@@ -83,34 +83,47 @@ namespace AuctionHouse
             }
         }
 
-        private void SendToClient(string text)
+        private void SendToClient(string data)
         {
-            Writer.WriteLine(text);
+            Writer.WriteLine(data);
             Writer.Flush();
         }
 
         private void Communicate()
         {
-            while (ExecuteCommand()) ;
+            while (Execute()) ;
         }
 
-        private bool ExecuteCommand()
+        private bool Execute()
         {
+            string jsonData = ReciveFromClient();
+            Debug.WriteLine(jsonData);
+            if (jsonData == null)
+                return false;
 
-            string command;
-            command = ReciveFromClient();
-            Debug.WriteLine(command);
-            if (command == null)
-                return false;       // ikke mere input
-            switch (command.Trim().ToLower())
+            CommunicationData recivedData = ServerUtilities.Decode(jsonData);
+            switch (recivedData.Action)
             {
-                case "exit":
-                    Close();
-                    return false;
-                default:
-                    SendToClient("Invalid command");
+                case "ExecuteCommand":
+                    switch (recivedData.Data.Trim().ToLower())
+                    {
+                        case "exit":
+                            Close();
+                            return false;
+                        case "servertime":
+                            int serverTime = ServerUtilities.Time;
+                            SendToClient(new CommunicationData("OutPutMessage", "Server time: " + serverTime).Encode());
+                            break;
+                        default:
+                            SendToClient(new CommunicationData("OutPutMessage", "Invalid command.").Encode());
+                            break;
+                    }
                     break;
-            }
+                default:
+                    Console.WriteLine("Invalid action recived.");
+                    break;
+
+            } 
             return true;
         }
     }

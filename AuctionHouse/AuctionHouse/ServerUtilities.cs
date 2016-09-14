@@ -27,7 +27,9 @@ namespace AuctionHouse
 
         public static CommunicationData Decode(string json)
         {
-            return JsonConvert.DeserializeObject<CommunicationData>(json);
+            CommunicationData data = new CommunicationData();
+            data = JsonConvert.DeserializeObject<CommunicationData>(json);
+            return data;
         }
 
     }

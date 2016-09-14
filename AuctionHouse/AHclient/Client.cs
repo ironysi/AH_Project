@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +37,9 @@ namespace AHclient
             }
         }
 
-        public void SendToServer(string text)
+        public void SendToServer(string data)
         {
-            server.Writer.WriteLine(text);
+            server.Writer.WriteLine(data);
             server.Writer.Flush();
         }
 
@@ -48,30 +49,37 @@ namespace AHclient
 
             while (keepGoing)
             {
-                string text;
-                text = RecieveFromServer();
-                if (text == null)
+                string jsonData = RecieveFromServer();
+                if (jsonData == null)
                 {
                     keepGoing = false;
                 }
                 else
                 {
-                    Console.WriteLine(text);
+                    CommunicationData data = Utilities.Decode(jsonData);
+                    switch (data.Action)
+                    {
+                        case "OutPutMessage":
+                            Console.WriteLine(data.Data);
+                            break;
+                        default:
+                            Debug.WriteLine("Recived invalid action.");
+                            break;
+
+                    }
                 }
             }
         }
 
         private void Communicate()
         {
-            while (ExecuteCommand()) ;
+            while (Execute()) ;
         }
 
-        private bool ExecuteCommand()
+        private bool Execute()
         {
-
-            string command;
-            command = Console.ReadLine();
-            SendToServer(command);
+            string command = Console.ReadLine();
+            SendToServer(new CommunicationData("ExecuteCommand", command).Encode());
             switch (command.Trim().ToLower())
             {
                 case "exit":
