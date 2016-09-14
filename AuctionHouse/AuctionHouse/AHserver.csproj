@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationData.cs" />
     <Compile Include="ServerAuction.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientHandler.cs" />
