@@ -19,10 +19,5 @@ namespace AuctionHouse
             }
         }
 
-        static public void RunAuction()
-        {
-            
-        }
-
     }
 }
