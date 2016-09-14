@@ -43,11 +43,7 @@ namespace AuctionHouse
 
                 Thread clientThread = new Thread(handler.Run);
 
-                clientThread.Start();
-
-                
-                
-
+                clientThread.Start();            
             }
         }
     }

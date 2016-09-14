@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AuctionHouse
@@ -17,8 +18,14 @@ namespace AuctionHouse
         public void Run()
         {
             Server server = new Server(12000);
-            server.Run();
+
+            Thread listeningForConnections = new Thread(server.Run);
+            listeningForConnections.Start();
+
             Console.ReadLine();
+           
         }
+
+
     }
 }

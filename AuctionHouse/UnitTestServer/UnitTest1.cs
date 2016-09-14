@@ -15,5 +15,10 @@ namespace UnitTestServer
 
             testClient.ChangeInformation("newName");
         }
+
+        public void CountdownTest()
+        {
+            
+        }
     }
 }
