@@ -27,7 +27,7 @@ namespace AuctionHouse
 
         public string Encode()
         {
-            return Utilities.JsonSerialize(this);
+            return ServerUtilities.JsonSerialize(this);
         }
 
     }

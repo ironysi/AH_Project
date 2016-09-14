@@ -12,8 +12,7 @@ namespace AHclient
     {
         public static string JsonSerialize<T>(T obj)
         {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-            return json;
+            return JsonConvert.SerializeObject(obj);
         }
 
         public static CommunicationData Decode(string json)
