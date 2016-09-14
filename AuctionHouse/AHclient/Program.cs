@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AHclient
 {
@@ -14,15 +15,8 @@ namespace AHclient
 
         static void Main(string[] args)
         {
-            Thread clock = new Thread(Utilities.Clock);
-            clock.Start();
-
-
-
             Client testClient = new Client();
-            testClient.Run();
-
-           
+            testClient.Run();    
         }
     }
 }

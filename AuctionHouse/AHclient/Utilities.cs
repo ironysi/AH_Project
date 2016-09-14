@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AHclient
 {
@@ -11,8 +12,12 @@ namespace AHclient
     {
         public static string JsonSerialize<T>(T obj)
         {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-            return json;
+            return JsonConvert.SerializeObject(obj);
+        }
+
+        public static CommunicationData Decode(string json)
+        {
+            return JsonConvert.DeserializeObject<CommunicationData>(json);
         }
     }
 }

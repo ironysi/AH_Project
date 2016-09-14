@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AuctionHouse
 {
@@ -17,6 +18,16 @@ namespace AuctionHouse
                 Time++;
                 Thread.Sleep(1000);
             }
+        }
+
+        public static string JsonSerialize<T>(T obj)
+        {
+            return JsonConvert.SerializeObject(obj);
+        }
+
+        public static CommunicationData Decode(string json)
+        {
+            return JsonConvert.DeserializeObject<CommunicationData>(json);
         }
 
     }
