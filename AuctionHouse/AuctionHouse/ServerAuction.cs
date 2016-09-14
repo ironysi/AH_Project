@@ -42,7 +42,7 @@ namespace AuctionHouse
         public void UpdateTime()
         {
             startTime = ServerUtilities.Time;
-            endTime = startTime + auctionTime;            
+            endTime = startTime + auctionTime;
         }
 
         public void SetTimeLeft()
@@ -55,7 +55,7 @@ namespace AuctionHouse
             {
                 TimeLeft = TimeLeft - 1;
             }
-            
+
         }
 
         public void NewBidAccepted(double newPrice, string highestBidder)
@@ -71,10 +71,37 @@ namespace AuctionHouse
             if (newPrice > Price)
             {
                 NewBidAccepted(newPrice, highestBidder);
+                UpdateTime();
             }
             else
             {
                 // return that the bid was not accepted
+            }
+        }
+
+        public void RunActiveAuction()
+        {
+            int currentTime = ServerUtilities.Time;
+            startTime = ServerUtilities.Time;
+
+            while (true)
+            {
+                if (ServerUtilities.Time != startTime + 18)
+                {
+                    if (currentTime != ServerUtilities.Time)
+                    {
+                        Console.WriteLine(TimeLeft);
+                        Console.WriteLine("--------Server Time ------" + ServerUtilities.Time);
+                        currentTime++;
+                        SetTimeLeft();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Bid over");
+                    break;
+
+                }
             }
         }
     }
