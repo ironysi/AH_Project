@@ -13,7 +13,6 @@ namespace AHclient
 
         static void Main(string[] args)
         {
-
             Client testClient = new Client();
             testClient.Run();
         }

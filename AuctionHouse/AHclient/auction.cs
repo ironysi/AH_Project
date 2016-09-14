@@ -30,6 +30,8 @@ namespace AHclient
             this.AuctionState = auctionstate;
         }
 
+        public Auction() { }
+
         public void UpdateTimeLeft(int timeleftInSeconds)
         {
             this.TimeLeftInSeconds = timeleftInSeconds;
