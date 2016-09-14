@@ -7,30 +7,75 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse
 {
+    /// <summary>
+    /// BID
+    /// </summary>
     class ServerAuction
     {
-        public string Name { get; set; }
-        public double CurrentPrice { get; set; }
-        public int TimeLeftInSeconds { get; set; }
+        private int startTime;
+        private int endTime;
+        private bool Active;
+        private int auctionTime;
         public string Description { get; set; }
-        public int AuctionState { get; set; }
-        private bool CountdownCompleted { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public int TimeLeft { get; set; }
+        public string HighestBidder { get; set; }
 
-        public ServerAuction(string name, double currentPrice, int timeleftInSeconds)
+        public ServerAuction(string name, double price, int timeleftInSeconds)
         {
-            this.Name = name;
-            this.CurrentPrice = currentPrice;
-            this.TimeLeftInSeconds = timeleftInSeconds;
+            Name = name;
+            Price = price;
+            TimeLeft = timeleftInSeconds;
         }
 
-        public ServerAuction(string name, double currentPrice, int timeleftInSeconds, string description, int auctionstate)
+        public ServerAuction(string name, double price, int ahTime, string description)
         {
-            this.Name = name;
-            this.CurrentPrice = currentPrice;
-            this.TimeLeftInSeconds = timeleftInSeconds;
-            this.Description = description;
-            this.AuctionState = auctionstate;
+            Name = name;
+            Price = price;
+            auctionTime = ahTime;
+            Description = description;
+            TimeLeft = auctionTime;
+            UpdateTime();
         }
 
+        public void UpdateTime()
+        {
+            startTime = ServerUtilities.Time;
+            endTime = startTime + auctionTime;            
+        }
+
+        public void SetTimeLeft()
+        {
+            if (TimeLeft == 0)
+            {
+                Active = false;
+            }
+            else
+            {
+                TimeLeft = TimeLeft - 1;
+            }
+            
+        }
+
+        public void NewBidAccepted(double newPrice, string highestBidder)
+        {
+            UpdateTime();
+            TimeLeft = auctionTime;
+            Price = newPrice;
+            HighestBidder = highestBidder;
+        }
+
+        public void CheckNewBid(double newPrice, string highestBidder)
+        {
+            if (newPrice > Price)
+            {
+                NewBidAccepted(newPrice, highestBidder);
+            }
+            else
+            {
+                // return that the bid was not accepted
+            }
+        }
     }
 }

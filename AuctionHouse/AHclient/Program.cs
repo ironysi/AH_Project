@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -15,7 +16,7 @@ namespace AHclient
         static void Main(string[] args)
         {
             Client testClient = new Client();
-            testClient.Run();
+            testClient.Run();    
         }
     }
 }
