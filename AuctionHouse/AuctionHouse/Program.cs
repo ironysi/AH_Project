@@ -31,12 +31,10 @@ namespace AuctionHouse
             Thread auctionThread = new Thread(bid.RunActiveAuction);
             auctionThread.Start();
 
-            // someone wants to bid on teddy
-        //    Thread auctioThread = new Thread(bid.CheckNewBid());
-
-
             Console.ReadLine();
            
         }
+
+        
     }
 }

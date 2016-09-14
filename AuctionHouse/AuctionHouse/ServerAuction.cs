@@ -71,6 +71,7 @@ namespace AuctionHouse
             if (newPrice > Price)
             {
                 NewBidAccepted(newPrice, highestBidder);
+                UpdateTime();
             }
             else
             {
@@ -81,7 +82,7 @@ namespace AuctionHouse
         public void RunActiveAuction()
         {
             int currentTime = ServerUtilities.Time;
-            int startTime = ServerUtilities.Time;
+            startTime = ServerUtilities.Time;
 
             while (true)
             {
@@ -90,7 +91,7 @@ namespace AuctionHouse
                     if (currentTime != ServerUtilities.Time)
                     {
                         Console.WriteLine(TimeLeft);
-                        Console.WriteLine("--------Server Time ------"+ServerUtilities.Time);
+                        Console.WriteLine("--------Server Time ------" + ServerUtilities.Time);
                         currentTime++;
                         SetTimeLeft();
                     }
@@ -103,6 +104,5 @@ namespace AuctionHouse
                 }
             }
         }
-
     }
 }
