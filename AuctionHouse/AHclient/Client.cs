@@ -16,25 +16,33 @@ namespace AHclient
 
         public void Run()
         {
-            server.Connect();
+            bool connectionResult = server.Connect();
 
-            Thread listenerThread = new Thread(Listener);
-            listenerThread.Start();
-
-            Console.Write("Please enter your name: ");
-            string inputName = Console.ReadLine();
-            while (string.IsNullOrEmpty(inputName) || string.IsNullOrWhiteSpace(inputName))
+            if (connectionResult)
             {
-                Console.WriteLine("Invalid name.");
-                Console.Write("Please enter your name again: ");
-                inputName = Console.ReadLine();
+                Thread listenerThread = new Thread(Listener);
+                listenerThread.Start();
+
+                Console.Write("Please enter your name: ");
+                string inputName = Console.ReadLine();
+                while (string.IsNullOrEmpty(inputName) || string.IsNullOrWhiteSpace(inputName))
+                {
+                    Console.WriteLine("Invalid name.");
+                    Console.Write("Please enter your name again: ");
+                    inputName = Console.ReadLine();
+                }
+
+                SendToServer(new CommunicationData("SetClientName", inputName).Encode());
+
+                Communicate();
+
+                server.CloseConnection();
             }
-
-            SendToServer(new CommunicationData("SetClientName", inputName).Encode());
-
-            Communicate();
-
-            server.CloseConnection();
+            else
+            {
+                Console.ReadLine();
+            }
+            
         }
 
         public string RecieveFromServer()

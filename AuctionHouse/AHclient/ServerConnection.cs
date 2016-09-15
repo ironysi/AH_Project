@@ -24,14 +24,24 @@ namespace AHclient
             this.Port = port;
         }
 
-        public void Connect()
+        public bool Connect()
         {
             Console.WriteLine("Connecting to server "+ ServerName + ", on port " + Port);
+            bool result = false;
+            try
+            {
+                Server = new TcpClient(ServerName, Port);
+                Stream = Server.GetStream();
+                Reader = new StreamReader(Stream);
+                Writer = new StreamWriter(Stream);
+                result = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
 
-            Server = new TcpClient(ServerName, Port);
-            Stream = Server.GetStream();
-            Reader = new StreamReader(Stream);
-            Writer = new StreamWriter(Stream);
+            return result;
         }
 
         public void CloseConnection()
