@@ -25,6 +25,7 @@ namespace UnitTestServer
             Thread auctionThread = new Thread(bid.RunActiveAuction);
             auctionThread.Start();
 
+
         }
     }
 }

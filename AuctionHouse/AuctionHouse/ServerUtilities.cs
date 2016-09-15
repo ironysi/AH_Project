@@ -11,8 +11,7 @@ namespace AuctionHouse
     public static class ServerUtilities
     {
         // List containing all the auctions running in the system.
-        internal static List<ServerAuction> AuctionList { get { return auctionList; } set { auctionList = value; } }
-        private static List<ServerAuction> auctionList = new List<ServerAuction>();
+        public static List<ServerAuction> auctionList = new List<ServerAuction>();
 
         public static int Time { get; set; }        
 

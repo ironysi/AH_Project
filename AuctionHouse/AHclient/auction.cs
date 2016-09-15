@@ -9,42 +9,26 @@ namespace AHclient
     class Auction
     {
         public string Name { get; set; }
-        public double CurrentPrice { get; set; }
-        public int TimeLeftInSeconds { get; set; }
+        public double Price { get; set; }
+        public int TimeLeft { get; set; }
         public string Description { get; set; }
-        public int AuctionState { get; set; }
-
-        public Auction(string name, double currentPrice, int timeleftInSeconds)
+        public int ID { get; private set; }
+        private bool active;
+        
+        public Auction(string name, double currentPrice, int timeleft, string description, bool isActive)
         {
-            this.Name = name;
-            this.CurrentPrice = currentPrice;
-            this.TimeLeftInSeconds = timeleftInSeconds;
-        }
-
-        public Auction(string name, double currentPrice, int timeleftInSeconds, string description, int auctionstate)
-        {
-            this.Name = name;
-            this.CurrentPrice = currentPrice;
-            this.TimeLeftInSeconds = timeleftInSeconds;
-            this.Description = description;
-            this.AuctionState = auctionstate;
+            Name = name;
+            Price = currentPrice;
+            TimeLeft = timeleft;
+            Description = description;
+            active = isActive;
         }
 
         public Auction() { }
 
-        public void UpdateTimeLeft(int timeleftInSeconds)
+        public void UpdateTimeLeft(int timeleft)
         {
-            this.TimeLeftInSeconds = timeleftInSeconds;
-        }
-
-        public void SetAuctionState(int auctionstate)
-        {
-            this.AuctionState = auctionstate;
-        }
-
-        public void ChangePrice(double currentPrice)
-        {
-            this.CurrentPrice = currentPrice;
+            this.TimeLeft = timeleft;
         }
     }
 }
