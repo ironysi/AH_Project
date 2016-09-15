@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AuctionHouse;
+using System.Threading;
 
 namespace UnitTestServer
 {
@@ -16,9 +17,14 @@ namespace UnitTestServer
             testClient.ChangeInformation("newName");
         }
 
-        public void CountdownTest()
+        [TestMethod]
+        public void CreateAuctionCountdownTest()
         {
-            
+            ServerAuction bid = new ServerAuction("Teddy", 10.0, 18, "Fluffy");
+
+            Thread auctionThread = new Thread(bid.RunActiveAuction);
+            auctionThread.Start();
+
         }
     }
 }

@@ -32,9 +32,9 @@ namespace AuctionHouse
             auctionThread.Start();
 
             Console.ReadLine();
-           
+
         }
 
-        
+
     }
 }

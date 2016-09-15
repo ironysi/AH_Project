@@ -10,7 +10,12 @@ namespace AuctionHouse
 {
     public static class ServerUtilities
     {
-        static public int Time { get; set; }
+        // List containing all the auctions running in the system.
+        internal static List<ServerAuction> AuctionList { get { return auctionList; } set { auctionList = value; } }
+        private static List<ServerAuction> auctionList = new List<ServerAuction>();
+
+        public static int Time { get; set; }        
+
         public static void Clock()
         {
             while (true)
