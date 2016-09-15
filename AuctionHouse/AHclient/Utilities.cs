@@ -10,6 +10,7 @@ namespace AHclient
 {
     public static class Utilities
     {
+        public static List<Auction> auctionList = new List<Auction>();
         public static string JsonSerialize<T>(T obj)
         {
             return JsonConvert.SerializeObject(obj);

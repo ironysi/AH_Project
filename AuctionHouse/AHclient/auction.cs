@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AHclient
 {
-    class Auction
+    public class Auction
     {
         public string Name { get; set; }
         public double Price { get; set; }

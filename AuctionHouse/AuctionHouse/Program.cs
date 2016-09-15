@@ -28,6 +28,9 @@ namespace AuctionHouse
 
             ServerAuction bid = new ServerAuction("Teddy", 10.0, 18, "Fluffy");
 
+            string json = ServerUtilities.JsonSerialize(bid);
+            Console.WriteLine(json);
+
             Thread auctionThread = new Thread(bid.RunActiveAuction);
             auctionThread.Start();
 

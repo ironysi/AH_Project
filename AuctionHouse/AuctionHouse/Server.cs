@@ -42,8 +42,8 @@ namespace AuctionHouse
 
 
                 ClientHandler handler = new ClientHandler(clientSocket);
-
                 Thread clientThread = new Thread(handler.Run);
+                
 
                 clientThread.Start();            
             }

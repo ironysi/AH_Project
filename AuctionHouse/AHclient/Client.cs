@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace AHclient
 {
@@ -56,11 +57,26 @@ namespace AHclient
                 }
                 else
                 {
-                    CommunicationData data = Utilities.Decode(jsonData);
-                    switch (data.Action)
+                    CommunicationData recivedData = Utilities.Decode(jsonData);
+                    switch (recivedData.Action)
                     {
                         case "OutPutMessage":
-                            Console.WriteLine(data.Data);
+                            Console.WriteLine(recivedData.Data);
+                            break;
+                        case "AddAuctionToList":
+                            Auction auction = JsonConvert.DeserializeObject<Auction>(recivedData.Data);
+                            if (Utilities.auctionList.Count > 0)
+                            {
+                                int index = Utilities.auctionList.FindIndex(a => a.ID == auction.ID);
+                                if (index != -1)
+                                {
+                                    Utilities.auctionList[index] = auction;
+                                }
+                                else
+                                {
+                                    Utilities.auctionList.Add(auction);
+                                }
+                            }
                             break;
                         default:
                             Debug.WriteLine("Recived invalid action.");
