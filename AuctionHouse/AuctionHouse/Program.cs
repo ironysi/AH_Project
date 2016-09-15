@@ -26,7 +26,8 @@ namespace AuctionHouse
             listeningForConnections.Start();
 
 
-            ServerAuction bid = new ServerAuction("Teddy", 10.0, 18, "Fluffy");
+            ServerAuction bid = new ServerAuction("Teddy", 10.0, 180, "Fluffy");
+            ServerUtilities.AuctionList.Add(bid);
 
             string json = ServerUtilities.JsonSerialize(bid);
             Console.WriteLine(json);

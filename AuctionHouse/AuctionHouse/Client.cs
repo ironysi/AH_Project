@@ -6,31 +6,10 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse
 {
-    public class Client
+    interface IClient
     {
-        private int Id;
-        private string Name;
-
-        public Client(string name) : this (0, name)
-        {
-            
-        }
-
-        public Client(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public void ChangeInformation(string name)
-        {
-            this.Name = name;
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        int Id { get; set; }
+        string Name { get; set; }
 
 
     }

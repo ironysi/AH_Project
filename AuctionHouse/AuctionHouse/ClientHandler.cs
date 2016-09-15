@@ -12,12 +12,15 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse
 {
-    class ClientHandler
+    public class ClientHandler:IClient
     {
         private Socket ClientSocket;
         private NetworkStream NetStream;
         private StreamWriter Writer;
         private StreamReader Reader;
+
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public ClientHandler(Socket clientSocket)
         {
@@ -30,14 +33,14 @@ namespace AuctionHouse
             Writer = new StreamWriter(NetStream);
             Reader = new StreamReader(NetStream);
 
-            SendToClient(new CommunicationData("OutPutMessage", "Sup dude, welkomen!").Encode());
-
             if (Server.CurrentClients < Server.MaxClients)
             {
                 Monitor.Enter(Server._object);
                 try
                 {
                     Server.CurrentClients++;
+                    Server.ClientIdCounter++;
+                    Id = Server.ClientIdCounter;
                 }
                 finally
                 {
@@ -54,6 +57,7 @@ namespace AuctionHouse
 
         public void Close()
         {
+            ServerUtilities.RemoveClient(Id);
             Writer.Close();
             Reader.Close();
             NetStream.Close();
@@ -108,16 +112,24 @@ namespace AuctionHouse
                     switch (recivedData.Data.Trim().ToLower())
                     {
                         case "exit":
+
                             Close();
                             return false;
                         case "servertime":
                             int serverTime = ServerUtilities.Time;
                             SendToClient(new CommunicationData("OutPutMessage", "Server time: " + serverTime).Encode());
                             break;
+                        case "updateclientstest":
+                            ServerUtilities.AuctionList[0].Notify();
+                            break;
                         default:
                             SendToClient(new CommunicationData("OutPutMessage", "Invalid command.").Encode());
                             break;
                     }
+                    break;
+                case "SetClientName":
+                    Name = recivedData.Data;
+                    SendToClient(new CommunicationData("OutPutMessage", "You are signed in as - " + recivedData.Data).Encode());
                     break;
                 default:
                     Console.WriteLine("Invalid action recived.");
@@ -125,6 +137,11 @@ namespace AuctionHouse
 
             } 
             return true;
+        }
+
+        public void Update()
+        {
+            SendToClient(new CommunicationData("OutPutMessage", "Hi this is update for Client - Name: " + Name + " Id: " + Id).Encode());
         }
     }
 

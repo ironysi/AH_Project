@@ -17,6 +17,7 @@ namespace AuctionHouse
         public static readonly int MaxClients = 10;
         public static int CurrentClients = 0;
         public static readonly object _object = new object();
+        public static int ClientIdCounter = 0;
 
         public Server(string ip, int port)
         {
@@ -44,6 +45,7 @@ namespace AuctionHouse
                 ClientHandler handler = new ClientHandler(clientSocket);
                 Thread clientThread = new Thread(handler.Run);
                 
+                ServerUtilities.ClientList.Add(handler);
 
                 clientThread.Start();            
             }

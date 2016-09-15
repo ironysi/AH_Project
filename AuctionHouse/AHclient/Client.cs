@@ -21,6 +21,17 @@ namespace AHclient
             Thread listenerThread = new Thread(Listener);
             listenerThread.Start();
 
+            Console.Write("Please enter your name: ");
+            string inputName = Console.ReadLine();
+            while (string.IsNullOrEmpty(inputName) || string.IsNullOrWhiteSpace(inputName))
+            {
+                Console.WriteLine("Invalid name.");
+                Console.Write("Please enter your name again: ");
+                inputName = Console.ReadLine();
+            }
+
+            SendToServer(new CommunicationData("SetClientName", inputName).Encode());
+
             Communicate();
 
             server.CloseConnection();
@@ -65,16 +76,16 @@ namespace AHclient
                             break;
                         case "AddAuctionToList":
                             Auction auction = JsonConvert.DeserializeObject<Auction>(recivedData.Data);
-                            if (Utilities.auctionList.Count > 0)
+                            if (Utilities.AuctionList.Count > 0)
                             {
-                                int index = Utilities.auctionList.FindIndex(a => a.ID == auction.ID);
+                                int index = Utilities.AuctionList.FindIndex(a => a.ID == auction.ID);
                                 if (index != -1)
                                 {
-                                    Utilities.auctionList[index] = auction;
+                                    Utilities.AuctionList[index] = auction;
                                 }
                                 else
                                 {
-                                    Utilities.auctionList.Add(auction);
+                                    Utilities.AuctionList.Add(auction);
                                 }
                             }
                             break;

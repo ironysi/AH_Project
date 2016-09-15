@@ -11,7 +11,8 @@ namespace AuctionHouse
     public static class ServerUtilities
     {
         // List containing all the auctions running in the system.
-        public static List<ServerAuction> auctionList = new List<ServerAuction>();
+        public static List<ServerAuction> AuctionList = new List<ServerAuction>();
+        public static List<ClientHandler> ClientList = new List<ClientHandler>();
 
         public static int Time { get; set; }        
 
@@ -34,6 +35,18 @@ namespace AuctionHouse
             CommunicationData data = new CommunicationData();
             data = JsonConvert.DeserializeObject<CommunicationData>(json);
             return data;
+        }
+
+        public static void RemoveClient(int id)
+        {
+            if (ClientList.Count > 0)
+            {
+                int index = ClientList.FindIndex(c => c.Id == id);
+                if (index != -1)
+                {
+                    ClientList.RemoveAt(index);
+                }
+            }
         }
 
     }

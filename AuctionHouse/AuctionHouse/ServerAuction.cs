@@ -22,9 +22,11 @@ namespace AuctionHouse
         public double Price { get; set; }
         public int TimeLeft { get; set; }
         public string HighestBidder { get; set; }
+        private List<ClientHandler> Subscribers;
 
         public ServerAuction(string name, double price, int ahTime, string description)
         {
+            Subscribers = ServerUtilities.ClientList;
             Name = name;
             Price = price;
             auctionTime = ahTime;
@@ -80,6 +82,11 @@ namespace AuctionHouse
             {
                 // return that the bid was not accepted
             }
+        }
+
+        public void Notify()
+        {
+            Subscribers.ForEach(x => x.Update());
         }
 
         public void RunActiveAuction()
