@@ -94,10 +94,9 @@ namespace AuctionHouse
                 Writer.WriteLine(data);
                 Writer.Flush();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
-                Close();
+                ServerUtilities.RemoveClient(Id);
             }
         }
 
