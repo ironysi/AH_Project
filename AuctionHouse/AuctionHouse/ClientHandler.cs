@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AuctionHouse
 {
-    public class ClientHandler:IClient
+    public class ClientHandler : IClient
     {
         private Socket ClientSocket;
         private NetworkStream NetStream;
@@ -52,7 +52,7 @@ namespace AuctionHouse
             {
                 SendToClient(new CommunicationData("OutPutMessage", "Server is full. Disconnecting...").Encode());
                 Close();
-            }           
+            }
         }
 
         public void Close()
@@ -112,7 +112,6 @@ namespace AuctionHouse
                     switch (recivedData.Data.Trim().ToLower())
                     {
                         case "exit":
-
                             Close();
                             return false;
                         case "servertime":
@@ -127,6 +126,17 @@ namespace AuctionHouse
                             break;
                     }
                     break;
+                case "Bid":
+                    double x = 0;
+                    if (double.TryParse(recivedData.Data, out x))
+                    {
+                        ServerUtilities.AuctionList[0].CheckNewBid(x, Name);
+                    }
+                    else
+                    {
+                        SendToClient(new CommunicationData("OutPutMessage", "Invalid syntax").Encode());
+                    }
+                    break;
                 case "SetClientName":
                     Name = recivedData.Data;
                     SendToClient(new CommunicationData("OutPutMessage", "You are signed in as - " + recivedData.Data).Encode());
@@ -135,13 +145,23 @@ namespace AuctionHouse
                     Console.WriteLine("Invalid action recived.");
                     break;
 
-            } 
+            }
             return true;
         }
 
         public void Update()
         {
             SendToClient(new CommunicationData("OutPutMessage", "Hi this is update for Client - Name: " + Name + " Id: " + Id).Encode());
+        }
+
+        public void BidNotification(double bidPrice, string bidder)
+        {
+            SendToClient(new CommunicationData("OutPutMessage", bidder + " has made a bid of: " + bidPrice).Encode());
+        }
+
+        public void Gavel(string s)
+        {
+            SendToClient(new CommunicationData("OutPutMessage", s).Encode());
         }
     }
 

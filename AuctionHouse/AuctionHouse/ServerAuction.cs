@@ -32,6 +32,7 @@ namespace AuctionHouse
             auctionTime = ahTime;
             Description = description;
             TimeLeft = auctionTime;
+            Active = true;
             UpdateTime();
             //ServerUtilities.AuctionList.Add(new ServerAuction(name, price, ahTime, description));
         }
@@ -48,9 +49,17 @@ namespace AuctionHouse
             {
                 Active = false;
             }
+
             else
             {
                 TimeLeft = TimeLeft - 1;
+                if(TimeLeft <= 3)
+                {
+                    for (int i = 0; i < Subscribers.Count; i++)
+                    {
+                        Subscribers[i].Gavel("Time left: " + TimeLeft.ToString());
+                    }
+                }
             }
 
         }
@@ -59,10 +68,19 @@ namespace AuctionHouse
         {
             if (Active == true)
             {
-                UpdateTime();
+                if (TimeLeft <= 3)
+                {
+                    UpdateTime();
+                }
                 TimeLeft = auctionTime;
                 Price = newPrice;
                 HighestBidder = highestBidder;
+
+                for (int i = 0; i < Subscribers.Count; i++)
+                {
+                    Subscribers[i].BidNotification(Price, HighestBidder);
+                }
+
             }
             else
             {
@@ -96,7 +114,7 @@ namespace AuctionHouse
 
             while (true)
             {
-                if (ServerUtilities.Time != startTime + 18)
+                if (ServerUtilities.Time != startTime + auctionTime)
                 {
                     if (currentTime != ServerUtilities.Time)
                     {
@@ -107,6 +125,12 @@ namespace AuctionHouse
                 else
                 {
                     Console.WriteLine("Bid over");
+
+                    for (int i = 0; i < Subscribers.Count; i++)
+                    {
+                        Subscribers[i].Gavel("Bid over, sold to " + HighestBidder);
+                    }
+
                     break;
                 }
             }

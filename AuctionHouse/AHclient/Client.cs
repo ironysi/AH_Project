@@ -16,6 +16,7 @@ namespace AHclient
 
         public void Run()
         {
+            Thread.Sleep(3000);
             server.Connect();
 
             Thread listenerThread = new Thread(Listener);
@@ -106,13 +107,38 @@ namespace AHclient
         private bool Execute()
         {
             string command = Console.ReadLine();
-            SendToServer(new CommunicationData("ExecuteCommand", command).Encode());
-            switch (command.Trim().ToLower())
+
+            if (command[0] == 'b' && command[1] == 'i' && command[2] == 'd' && command[3] == ' ')
             {
-                case "exit":
-                    return false;
+                string input = "";
+                for (int i = 4; i < command.Length; i++)
+                {
+                    input += command[i];
+                }
+
+                int x = 0;
+
+                if(int.TryParse(input, out x))
+                {
+                    SendToServer(new CommunicationData("Bid", input).Encode());
+
+                }else
+                {
+                    Console.WriteLine("Invalid Syntax");
+                }
+
             }
-            return true;
+            else
+            {
+                SendToServer(new CommunicationData("ExecuteCommand", command).Encode());
+                switch (command.Trim().ToLower())
+                {
+                    case "exit":
+                        return false;
+                }
+            }
+                return true;
+
         }
 
     }
