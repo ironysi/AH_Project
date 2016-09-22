@@ -89,8 +89,15 @@ namespace AuctionHouse
 
         private void SendToClient(string data)
         {
-            Writer.WriteLine(data);
-            Writer.Flush();
+            try
+            {
+                Writer.WriteLine(data);
+                Writer.Flush();
+            }
+            catch (Exception e)
+            {
+                ServerUtilities.RemoveClient(Id);
+            }
         }
 
         private void Communicate()
@@ -139,7 +146,7 @@ namespace AuctionHouse
                     break;
                 case "SetClientName":
                     Name = recivedData.Data;
-                    SendToClient(new CommunicationData("OutPutMessage", "You are signed in as - " + recivedData.Data).Encode());
+                    SendToClient(new CommunicationData("OutPutMessage", "You are signed in as - " + recivedData.Data + Environment.NewLine + "To exit type: exit").Encode());
                     break;
                 default:
                     Console.WriteLine("Invalid action recived.");

@@ -104,7 +104,10 @@ namespace AuctionHouse
 
         public void Notify()
         {
-            Subscribers.ForEach(x => x.Update());
+            for (int i = 0; i < Subscribers.Count; i++)
+            {
+                Subscribers[i].Update();
+            }
         }
 
         public void RunActiveAuction()
